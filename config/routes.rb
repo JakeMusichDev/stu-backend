@@ -4,8 +4,10 @@ Rails.application.routes.draw do
       resources :collectors
       resources :sellers
       resources :auctions
-      resources :items
       resources :bids
+      get '/auctions/:id/bids' => 'auctions#bids'
+      post '/login', to: 'auth#create'
+      get '/current_user', to: 'auth#show'
     end
   end
 end

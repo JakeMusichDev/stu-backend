@@ -18,12 +18,12 @@ class Api::V1::BidsController < ApplicationController
 
   def destroy
     @bid.destroy
-  end 
+  end
 
   private
 
   def bid_params
-    params.require(:bid).permit(:bid_price, :user_id, :item_id)
+    params.require(:bid).permit(:bid_price, :collector_id, :auction_id)
   end
 
   def find_bid

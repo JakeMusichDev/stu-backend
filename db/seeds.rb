@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
 sellers = Seller.create(
   [
     {name: 'jake', email: 'jake@boyoy.com', password: 'dragons'},
@@ -15,10 +6,38 @@ sellers = Seller.create(
   ]
 )
 
-items = Item.create(
+collectors = Collector.create(
   [
-    {title: 'hokay', year: 2015, medium: 'oil', provenance: 'the met', dimensions: '6ftx6ft', seller_id: 1},
-    {title: 'big sculpture', year: 2014, medium: 'bronze', provenance: 'the met', dimensions: '6ftx6ft', seller_id: 2},
-    {title: 'painting', year: 2012, medium: 'acrylic', provenance: 'the met', dimensions: '6ftx6ft', seller_id: 3}
+    {name: 'Rich Guy', email: 'rich@rich.com', password: 'password'},
+    {name: 'Heir Apparnt', email: 'heir@rich.com', password: 'stir'},
+    {name: 'Filth Staux', email: 'steve@staux.com', password: 'phrase'}
+  ]
+)
+
+
+
+auctions = Auction.create(
+  [
+    {seller_id: '1', lot_title: 'hokey', lot_description: 'big bronze', lot_year: 2016, lot_medium: 'bronze', lot_dimensions: '12ftx12ft', start_date: '', end_date: '', reserve: 500.00, start_date: Time.now.to_formatted_s(:short), end_date: Time.now.tomorrow},
+    {seller_id: '2', lot_title: 'LumpDawg', lot_description: 'big bronze', lot_year: 1016, lot_medium: 'bronze', lot_dimensions: '12ftx12ft', start_date: '', end_date: '', reserve: 500.00, selling_price: '', winning_bid: ''},
+    {seller_id: '3', lot_title: 'The View of GoldenView Views', lot_description: 'oil', lot_year: 1987, lot_medium: 'painting', lot_dimensions: '12ftx12ft', start_date: '', end_date: '', reserve: 500.00, selling_price: '', winning_bid: ''},
+    {seller_id: '1', lot_title: 'Chocolate Stalk', lot_description: 'oil', lot_year: 1987, lot_medium: 'painting', lot_dimensions: '12ftx12ft', start_date: '', end_date: '', reserve: 500.00, selling_price: '', winning_bid: ''}
+  ]
+)
+
+bids = Bid.create(
+  [
+    {bid_price: 1000, collector_id: 1, auction_id: 2},
+    {bid_price: 1020, collector_id: 1, auction_id: 2},
+    {bid_price: 1080, collector_id: 1, auction_id: 2},
+    {bid_price: 2000, collector_id: 1, auction_id: 2},
+    {bid_price: 4010, collector_id: 1, auction_id: 2},
+    {bid_price: 5000, collector_id: 1, auction_id: 2},
+    {bid_price: 5500, collector_id: 1, auction_id: 2},
+    {bid_price: 5600, collector_id: 1, auction_id: 2},
+    {bid_price: 10000, collector_id: 1, auction_id: 3},
+    {bid_price: 13000, collector_id: 1, auction_id: 3},
+    {bid_price: 15000, collector_id: 1, auction_id: 3},
+    {bid_price: 19000, collector_id: 1, auction_id: 3},
   ]
 )

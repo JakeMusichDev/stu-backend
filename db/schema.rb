@@ -16,15 +16,20 @@ ActiveRecord::Schema.define(version: 20170810144646) do
   enable_extension "plpgsql"
 
   create_table "auctions", force: :cascade do |t|
-    t.time "start_date"
-    t.time "end_date"
+    t.string "lot_title"
+    t.string "lot_description"
+    t.integer "lot_year"
+    t.string "lot_medium"
+    t.string "lot_dimensions"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.integer "reserve"
     t.integer "selling_price"
     t.string "winning_bid"
-    t.bigint "item_id"
+    t.bigint "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_auctions_on_item_id"
+    t.index ["seller_id"], name: "index_auctions_on_seller_id"
   end
 
   create_table "bids", force: :cascade do |t|
@@ -45,18 +50,6 @@ ActiveRecord::Schema.define(version: 20170810144646) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "title"
-    t.integer "year"
-    t.string "medium"
-    t.string "provenance"
-    t.string "dimensions"
-    t.bigint "seller_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["seller_id"], name: "index_items_on_seller_id"
-  end
-
   create_table "sellers", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -65,8 +58,7 @@ ActiveRecord::Schema.define(version: 20170810144646) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "auctions", "items"
+  add_foreign_key "auctions", "sellers"
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "collectors"
-  add_foreign_key "items", "sellers"
 end
