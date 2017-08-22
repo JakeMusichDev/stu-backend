@@ -10,7 +10,7 @@ class Api::V1::AuthController < ApplicationController
   end
 
   def create
-    user = Seller.find_by(email: params[:email]) || Collector.find_by(email: params[:email])
+    user = User.find_by(email: params[:email])
     if user.present? && user.authenticate(params[:password])
       created_jwt = issue_token({id: user.id})
       render json: {id: user.id, name: user.name, jwt: created_jwt}

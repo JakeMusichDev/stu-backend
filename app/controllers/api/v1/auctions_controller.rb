@@ -1,7 +1,5 @@
 class Api::V1::AuctionsController < ApplicationController
-
   before_action :find_auction, only: [:show, :destroy]
-
   before_action :current_auction_bids, only: [:bids]
 
   def index
@@ -29,7 +27,7 @@ class Api::V1::AuctionsController < ApplicationController
   private
 
   def auction_params
-    params.require(:auction).permit(:start_date, :end_date, :reserve, :seller_id, :winning_bid, :lot_year, :lot_dimensions, :lot_description, :lot_title, :lot_medium)
+    params.require(:auction).permit(:start_date, :end_date, :reserve, :user_id, :winning_bid, :lot_year, :lot_dimensions, :lot_description, :lot_title, :lot_medium)
   end
 
   def find_auction
@@ -38,6 +36,6 @@ class Api::V1::AuctionsController < ApplicationController
 
   def current_auction_bids
     @auction = Auction.find(params[:id])
-    @bids = Bid.all.where(collector_id: @auction.id)
+    @bids = Bid.all.where(user_id: @auction.id)
   end
 end

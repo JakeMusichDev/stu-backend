@@ -11,7 +11,7 @@ class CreateAuctions < ActiveRecord::Migration[5.1]
       t.integer :reserve
       t.integer :selling_price
       t.string :winning_bid
-      t.references :seller, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

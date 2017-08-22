@@ -26,23 +26,23 @@ ActiveRecord::Schema.define(version: 20170810144646) do
     t.integer "reserve"
     t.integer "selling_price"
     t.string "winning_bid"
-    t.bigint "seller_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seller_id"], name: "index_auctions_on_seller_id"
+    t.index ["user_id"], name: "index_auctions_on_user_id"
   end
 
   create_table "bids", force: :cascade do |t|
     t.integer "bid_price"
-    t.bigint "collector_id"
+    t.bigint "user_id"
     t.bigint "auction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["auction_id"], name: "index_bids_on_auction_id"
-    t.index ["collector_id"], name: "index_bids_on_collector_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
-  create_table "collectors", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -50,15 +50,7 @@ ActiveRecord::Schema.define(version: 20170810144646) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sellers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "auctions", "sellers"
+  add_foreign_key "auctions", "users"
   add_foreign_key "bids", "auctions"
-  add_foreign_key "bids", "collectors"
+  add_foreign_key "bids", "users"
 end

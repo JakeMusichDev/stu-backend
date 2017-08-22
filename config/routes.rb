@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :collectors
-      resources :sellers
+      resources :users
       resources :auctions
       resources :bids
       get '/auctions/:id/bids' => 'auctions#bids'

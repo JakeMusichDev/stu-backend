@@ -1,5 +1,5 @@
 class BidSerializer < ActiveModel::Serializer
-  attributes :collector_id, :auction_id, :bid_price
-  belongs_to :collector
+  attributes :user_id, :auction_id, :bid_price
+  belongs_to :user
   belongs_to :auction
 end
